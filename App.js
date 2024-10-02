@@ -6,10 +6,6 @@ export default function App() {
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <Text>Test test test</Text>
-<<<<<<< Updated upstream
-=======
-      <Text>Live Laugh</Text>
->>>>>>> Stashed changes
       <StatusBar style="auto" />
     </View>
   );
