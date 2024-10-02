@@ -1,15 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+export default function Index() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Open up app/index.js to start working on your app!</Text>
       <Text>Test test test</Text>
-<<<<<<< Updated upstream
-=======
-      <Text>Live Laugh</Text>
->>>>>>> Stashed changes
+      <Text>Live Laugh Valorant (Added By Kyle Deocampo)</Text>
       <StatusBar style="auto" />
     </View>
   );
