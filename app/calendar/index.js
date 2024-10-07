@@ -6,6 +6,7 @@ export default function Calendar() {
     <View style={styles.container}>
       <Text>Calendar Screen</Text>
       <StatusBar style="auto" />
+
     </View>
   );
 }
