@@ -1,22 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Redirect } from "expo-router";
 
-export default function Index() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up app/index.js to start working on your app!</Text>
-      <Text>Test test test</Text>
-      <Text>Live Laugh Valorant (Added By Kyle Deocampo)</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const index = () => {
+  return <Redirect href="/(auth)/login" />;
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default index;
+
+const styles = StyleSheet.create({});
