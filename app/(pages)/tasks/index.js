@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function User() {
+export default function Calendar() {
   return (
     <View style={styles.container}>
-      <Text>User Screen</Text>
+      <Text>Task Screen</Text>
       <StatusBar style="auto" />
     </View>
   );

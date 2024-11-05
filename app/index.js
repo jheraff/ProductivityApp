@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { MongoClient } from 'mongodb';
 
 export default function Index() {
   return (
@@ -21,4 +20,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
