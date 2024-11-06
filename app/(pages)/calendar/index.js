@@ -1,32 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import DateBox from './DateBox';
 
 const Calendar = () => {
+
+
+  const days = Array.from({length: 30}, (_,i) => i+1);
+
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+
   return (
     <View style={styles.container}>
-      
-      <View style={styles.calendarBox}>
-      <Text style={{ color: 'white', marginTop: 20 }}>Calendar Content Here</Text>
-      </View>
 
-      <View style={styles.dateBox}>
-      <Text style={{ color: 'white', marginTop: 5 }}></Text>
+      <View style={styles.calendarBox}> 
+      <DateBox day={1} />
       </View>
 
       <View style={styles.monthBox}>
-      <Text style={{ color: 'black', marginTop: 5 }}> Month</Text>
+      <Text style={{ color: 'black', marginTop: 5 }}>{months[0]} </Text>
       </View>
 
 
       <View style={styles.leftButton}>
-      <Text style={{ color: 'black', marginTop: 5 }}> left</Text>
-      </View>
-
-      <View style={styles.rightButton}>
       <Text style={{ color: 'black', marginTop: 5 }}> right</Text>
       </View>
 
+      <View style={styles.rightButton}>
+      <Text style={{ color: 'black', marginTop: 5 }}> left</Text>
+      </View>
+
       <StatusBar style="auto" />
+      
     </View>
 
     
@@ -38,7 +43,7 @@ export default Calendar;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#262B2E',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -47,22 +52,16 @@ const styles = StyleSheet.create({
     height: 316,
     borderRadius: 15,
     borderColor: '#000',
-    borderWidth: 2,
+    borderWidth: 4,
     backgroundColor: '#4CA5E4',
     alignItems: 'center',
+    flexDirection: 'row',      // Adjust layout direction
+    flexWrap: 'wrap',          // Allow items to wrap onto the next line
+    justifyContent: 'flex-start', // Align items to the start
+    padding: 10,
 
   },
-  dateBox: {
-    width: 30,
-    height: 30,
-    backgroundColor: '#89D5FF',
-    borderRadius: 7,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5, // for Android shadow
-  },
+ 
 
   monthBox: {
     width: 100,
@@ -86,6 +85,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 30,
 
+    backgroundColor: '#808080',
     borderRadius: 20,
     borderColor: '#000',
     borderWidth: 2,
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 30,
 
+    backgroundColor: '#808080',
     position: 'relative',
     bottom: 440,
     right: 100,
