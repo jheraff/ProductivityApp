@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import DateBox from './DateBox';
+import DateBox from '../../../components/DateBox';
 
 const Calendar = () => {
 
@@ -13,9 +13,18 @@ const Calendar = () => {
   return (
     <View style={styles.container}>
 
-      <View style={styles.calendarBox}> 
-      <DateBox day={1} />
+
+      <View style={styles.calendarBox}>
+          {days.map((number) => (
+
+        <View key = {number}>  
+          <DateBox day = {number}></DateBox>
+        </View>
+
+        ))}
       </View>
+    
+
 
       <View style={styles.monthBox}>
       <Text style={{ color: 'black', marginTop: 5 }}>{months[0]} </Text>
@@ -23,11 +32,11 @@ const Calendar = () => {
 
 
       <View style={styles.leftButton}>
-      <Text style={{ color: 'black', marginTop: 5 }}> right</Text>
+      <Text style={{ color: 'black', marginTop: 5 }}> next</Text>
       </View>
 
       <View style={styles.rightButton}>
-      <Text style={{ color: 'black', marginTop: 5 }}> left</Text>
+      <Text style={{ color: 'black', marginTop: 5 }}> back</Text>
       </View>
 
       <StatusBar style="auto" />
@@ -48,6 +57,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   calendarBox: {
+
+    paddingTop: 30,
     width: 330,
     height: 316,
     borderRadius: 15,

@@ -20,6 +20,7 @@ export default DateBox;
 const styles = StyleSheet.create({
 
     dateBox: {
+        justifyContent: 'top',
         width: 30,
         height: 30,
         backgroundColor: '#89D5FF',
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5, 
+        margin:6,
       },
 
     dateText: {
