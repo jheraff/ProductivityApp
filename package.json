@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.3",
+<<<<<<< HEAD
     "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-picker/picker": "^2.9.1",
     "expo": "^51.0.32",
@@ -21,6 +22,18 @@
     "mongodb": "^6.10.0",
     "mongoose": "^8.7.3",
     "nodemon": "^3.1.7",
+=======
+    "@react-native-async-storage/async-storage": "^1.24.0",
+    "@react-native-picker/picker": "^2.9.0",
+    "@react-navigation/native": "^6.1.18",
+    "expo": "^51.0.32",
+    "expo-auth-session": "^5.5.2",
+    "expo-constants": "~16.0.2",
+    "expo-linking": "~6.3.1",
+    "expo-router": "~3.5.23",
+    "expo-status-bar": "~1.12.1",
+    "firebase": "^11.0.1",
+>>>>>>> 703094f9d1ea7224bfd93d51d4506c2091f5044d
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
@@ -28,6 +41,10 @@
     "react-native-screens": "3.31.1",
     "react-native-web": "~0.19.10",
     "yarn": "^1.22.22"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 703094f9d1ea7224bfd93d51d4506c2091f5044d
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
