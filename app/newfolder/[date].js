@@ -1,17 +1,33 @@
-import { useRouter } from 'expo-router';
-import { StyleSheet, View, Text } from 'react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 
-export default function DateScreen() {
+const DateScreen = () => {
   const router = useRouter();
-  const { date } = router.query;
+
+
+  const {date} = useLocalSearchParams();
+
+  if (!date) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.dateText}>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.dateText}>Selected Date: {date}</Text>
-      {/* You can use the 'date' to fetch or display specific data */}
+      <Pressable onPress={() => router.replace("/calendar")}>
+        <Text> Go back </Text>
+      </Pressable>
     </View>
+
+  
   );
-}
+};
+
+export default DateScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -24,4 +40,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#fff',
   },
+
+
 });
