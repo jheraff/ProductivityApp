@@ -3,22 +3,19 @@ import { StyleSheet, View } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { useRouter } from 'expo-router';
 
-
-export default function CalendarScreen() {
-
+const CalendarScreen = () => {
   const router = useRouter();
-
   const currentDate = new Date().toISOString().split('T')[0];
-  
+
   const handleDayPress = (day) => {
     const selectedDate = day.dateString; // Format: 'YYYY-MM-DD'
-    router.push(`/calendar/${selectedDate}`); // Navigate to the dynamic date screen
+    router.push(`/newfolder/${selectedDate}`); // Navigate to the dynamic date screen
   };
 
   return (
     <View style={styles.container}>
       <Calendar
-        style={{ width: 320}}
+        style={{ width: 320 }}
         current={currentDate}
         markedDates={{
           '2024-12-15': { selected: true, selectedColor: 'green' },
@@ -41,14 +38,12 @@ export default function CalendarScreen() {
           textMonthFontWeight: 'bold',
           textDayHeaderFontWeight: '300',
         }}
-
-        onDayPress={handleDayPress} 
+        onDayPress={handleDayPress}
       />
-
       <StatusBar style="auto" />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -58,3 +53,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default CalendarScreen;
