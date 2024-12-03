@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View ,SafeAreaView} from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { useRouter } from 'expo-router';
 
@@ -19,17 +19,21 @@ export default function CalendarScreen() {
       pathname: "/newFolder/[date]",
       params: { date: selectedDate},
 
-    }); //Goes to /newFolder/[date].js
+    }); // Calendar date
   }; 
   return (
+    <SafeAreaView style={{ backgroundColor: '#fff' }}>
     <View style={styles.container}>
       <Calendar
         style={{ width: 320}}
         current={currentDate}
         markedDates={{
           '2024-12-15': { selected: true, selectedColor: 'green' },
+          '2024-12-04': { selected: true, selectedColor: 'green' },
+          '2024-12-07': { selected: true, selectedColor: 'yellow' },
           '2024-12-25': { selected: true, selectedColor: 'yellow' },
           '2024-12-23': { selected: true, selectedColor: 'yellow' },
+          '2024-12-10': { selected: true, selectedColor: 'yellow' },
         }}
         theme={{
           backgroundColor: '#54b8ff',
@@ -53,6 +57,7 @@ export default function CalendarScreen() {
 
       <StatusBar style="auto" />
     </View>
+    </SafeAreaView>
   );
 }
 
@@ -62,5 +67,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#262B2E',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 50,
   },
 });
