@@ -21,7 +21,7 @@ An app that gives daily tasks to the users to improve their general well being o
 ## Documentation
 
 #### Installation
-
+[Dependencies](https://docs.google.com/document/d/16SkNZVX5G14zOnnwzW6bU3Eo0RGk-mmY1ZmnULTUvHc/edit?usp=sharing)
 
 [Back To The Top](#mythabit-app)
 
