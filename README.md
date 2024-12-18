@@ -18,6 +18,7 @@ An app that gives daily tasks to the users to improve their general well being o
 ---
 
 ## Documentation
+[App Documentation](https://docs.google.com/document/d/1qlh8fUrCMT8w7zsy_JcdGEoDryNPiS1ibvuflMcwx6Y/edit?usp=sharing)
 
 #### Installation
 [Dependencies](https://docs.google.com/document/d/16SkNZVX5G14zOnnwzW6bU3Eo0RGk-mmY1ZmnULTUvHc/edit?usp=sharing)
