@@ -5,7 +5,6 @@
 - [Description](#description)
 - [Documentation](#documentation)
 - [References](#references)
-- [Author Info](#author-info)
 
 ---
 
@@ -32,12 +31,3 @@ An app that gives daily tasks to the users to improve their general well being o
 
 ---
 
-## Team Members
-
-- Jhermayne
-- Daniel
-- Kyle
-- Amgad
-- Manolo
-
-[Back To The Top](#mythabit-app)
