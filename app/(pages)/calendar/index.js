@@ -28,12 +28,36 @@ export default function CalendarScreen() {
         style={{ width: 320}}
         current={currentDate}
         markedDates={{
-          '2024-12-15': { selected: true, selectedColor: 'green' },
-          '2024-12-04': { selected: true, selectedColor: 'green' },
-          '2024-12-07': { selected: true, selectedColor: 'yellow' },
+          '2024-12-15': { selected: true, selectedColor: '#109c37' },
+          '2024-12-04': { selected: true, selectedColor: '#109c37' },
+          '2024-12-25': { selected: true, selectedColor: 'yellow' },
           '2024-12-25': { selected: true, selectedColor: 'yellow' },
           '2024-12-23': { selected: true, selectedColor: 'yellow' },
-          '2024-12-10': { selected: true, selectedColor: 'yellow' },
+          '2024-12-10': { selected: true, selectedColor: '#109c37' },
+
+          '2025-01-02': { selected: true, selectedColor: 'yellow' },
+          '2025-01-29': { selected: true, selectedColor: 'yellow' },
+          '2025-01-24': { selected: true, selectedColor: 'yellow' },
+          '2025-01-11': { selected: true, selectedColor: 'yellow' },
+          '2025-01-13': { selected: true, selectedColor: 'yellow' },
+          '2025-01-06': { selected: true, selectedColor: 'yellow' },
+
+
+          '2025-02-03': { selected: true, selectedColor: 'yellow' },
+          '2025-02-24': { selected: true, selectedColor: 'yellow' },
+          '2025-02-20': { selected: true, selectedColor: 'yellow' },
+          '2025-02-14': { selected: true, selectedColor: 'yellow' },
+          '2025-02-09': { selected: true, selectedColor: 'yellow' },
+          '2025-02-02': { selected: true, selectedColor: 'yellow' },
+
+
+          '2025-03-04': { selected: true, selectedColor: 'yellow' },
+          '2025-03-22': { selected: true, selectedColor: 'yellow' },
+          '2025-03-16': { selected: true, selectedColor: 'yellow' },
+          '2025-03-13': { selected: true, selectedColor: 'yellow' },
+          '2025-03-07': { selected: true, selectedColor: 'yellow' },
+          '2025-03-03': { selected: true, selectedColor: 'yellow' },
+          '2025-03-26': { selected: true, selectedColor: 'yellow' },
         }}
         theme={{
           backgroundColor: '#54b8ff',
