@@ -23,7 +23,6 @@
     "mongodb": "^6.10.0",
     "mongoose": "^8.7.3",
     "nodemon": "^3.1.7",
->>>>>>> 80bdbc6a6b52f315c26215d364a63126a14f97fc
     "@react-native-async-storage/async-storage": "^1.24.0",
     "@react-native-picker/picker": "^2.9.0",
     "@react-navigation/native": "^6.1.18",
