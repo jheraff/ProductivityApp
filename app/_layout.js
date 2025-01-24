@@ -28,7 +28,16 @@ export default function Layout() {
         <Link href="/user" style={styles.navItem}>
           <Text style={styles.navText}>User</Text>
         </Link>
-      </View>
+        <Link href="/action/adventure" style={styles.navItem}>
+          <Text style={styles.navText}>Adventure</Text>
+        </Link>
+        <Link href="/action/items" style={styles.navItem}>
+          <Text style={styles.navText}>Items</Text>
+        </Link>
+        <Link href="/action/shop" style={styles.navItem}>
+          <Text style={styles.navText}>Shop</Text>
+        </Link>
+        </View>
     </View>
   );
 }
