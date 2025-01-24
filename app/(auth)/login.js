@@ -8,17 +8,19 @@ import {
     View, 
     Text, 
     TextInput, 
-    Button, 
-    FlatList, 
     StyleSheet, 
     SafeAreaView, 
     KeyboardAvoidingView,
-    Pressable
+    Pressable,
+    Dimensions,
+    Platform
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from "@expo/vector-icons";
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+
+const { width, height } = Dimensions.get('window');
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -27,26 +29,19 @@ const Login = () => {
     const [tasks, setTasks] = useState([]);
     const router = useRouter();
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                setUserId(user.uid);
-                await checkUserDoc(user);
-                await loadOrFetchTasks(user.uid);
-                router.push('/home');
-            } else {
-                setUserId(null);
-                setTasks([]);
-            }
-        });
-
-        return () => unsubscribe();
-    }, [router]);
-
     const login = async () => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            await checkUserDoc(userCredential.user);
+            const userDoc = await getDoc(doc(db, "users", userCredential.user.uid));
+            
+            if (userDoc.exists()) {
+                // For existing users, direct to home regardless of setup status
+                router.push('/home');
+            } else {
+                // Handle edge case where user exists in Auth but not in Firestore
+                console.error("User document not found in Firestore");
+                router.push('/login');
+            }
         } catch (err) {
             console.error('Error logging in with email and password:', err);
         }
@@ -55,7 +50,15 @@ const Login = () => {
     const signInWithGoogle = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
-            await checkUserDoc(result.user);
+            const userDoc = await getDoc(doc(db, "users", result.user.uid));
+            
+            if (userDoc.exists()) {
+                // Existing Google user - go to home
+                router.push('/home');
+            } else {
+                // New Google user - start registration flow
+                router.push('/register');
+            }
         } catch (err) {
             console.error('Error logging in with Google:', err);
         }
@@ -66,6 +69,16 @@ const Login = () => {
         const userDoc = await getDoc(userDocRef);
 
         if (!userDoc.exists()) {
+            const userData = userDoc.data();
+
+            if (!userData.customizationComplete) {
+                router.push("/customize");
+            } else if (!userData.personalSetupComplete) {
+                router.push("/personal");
+            } else {
+                router.push("/home");
+            }
+        } else {
             await setDoc(userDocRef, {
                 username: user.displayName || "Anonymous",
                 email: user.email,
@@ -75,8 +88,12 @@ const Login = () => {
                 inventory: [],
                 tasks: [],
                 currency: 0,
+                customizationComplete: false,
+                personalSetupComplete: false,
                 createdAt: new Date()
             });
+            router.push("/customize");
+
         }
     };
 
@@ -256,11 +273,8 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         borderWidth: 1,
         width: 350,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
         elevation: 5,
+        boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)',
         marginTop: 40,
         alignItems: 'center',
     },
@@ -311,11 +325,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#f0f0f0',
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
         elevation: 5,
+        boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)',
     },
     socialIcon: {
         width: 30,
