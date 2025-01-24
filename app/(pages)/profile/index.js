@@ -19,9 +19,26 @@ const Profile = () => {
     return (
         <View>
             
-            <Pressable onPress={handleLogout}>
+            <Pressable 
+                onPress={handleLogout}>
                 <Text> Sign Out </Text>
             </Pressable>    
+
+            <Pressable
+                onPress={() => router.replace("../../(auth)/customize")}
+            >
+                <Text>
+                    Avatar Customization
+                </Text>
+            </Pressable>
+
+            <Pressable
+                onPress={() => router.replace("../../(auth)/personal")}
+            >
+                <Text>
+                    Task Personalization
+                </Text>
+            </Pressable>
 
         </View>
     );

@@ -28,9 +28,16 @@ const Register = () => {
 
     const register = async () => {
         try {
+            // Validate inputs first
+            if (!email || !password || !username) {
+                alert("Please fill in all fields");
+                return;
+            }
+
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
+            // Create new user document with initial state
             await setDoc(doc(db, "users", user.uid), {
                 username: username,
                 email: user.email,
@@ -46,41 +53,64 @@ const Register = () => {
                 inventory: [],
                 tasks: [],
                 currency: 0,
-                createdAt: new Date()
+                customizationComplete: false,
+                personalSetupComplete: false,
+                createdAt: new Date(),
             });
 
-            router.push('/home');
+            // Start the new user flow
+            router.push('/customize');
         } catch (err) {
-            console.error(err);
+            console.error("Error registering user:", err);
+            // Handle specific registration errors
+            if (err.code === 'auth/email-already-in-use') {
+                alert("This email is already registered. Please login instead.");
+            } else {
+                alert("Registration failed. Please try again.");
+            }
         }
     };
+
 
     const signInWithGoogle = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             const user = result.user;
-
-            await setDoc(doc(db, "users", user.uid), {
-                username: user.displayName || "Anonymous",
-                email: user.email,
-                xp: 0,
-                level: 1,
-                stats: {
-                    strength: 1,
-                    intellect: 1,
-                    agility: 1,
-                    arcane: 1,
-                    focus: 1,
-                },
-                inventory: [],
-                tasks: [],
-                currency: 0,
-                createdAt: new Date()
-            }, { merge: true });
-
-            router.push('/home');
+            
+            // Check if user document already exists
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            
+            if (!userDoc.exists()) {
+                // Create new user document for Google sign-up
+                await setDoc(doc(db, "users", user.uid), {
+                    username: user.displayName || "Anonymous",
+                    email: user.email,
+                    xp: 0,
+                    level: 1,
+                    stats: {
+                        strength: 1,
+                        intellect: 1,
+                        agility: 1,
+                        arcane: 1,
+                        focus: 1,
+                    },
+                    inventory: [],
+                    tasks: [],
+                    currency: 0,
+                    customizationComplete: false,
+                    personalSetupComplete: false,
+                    createdAt: new Date(),
+                });
+                
+                // Start the new user flow
+                router.push('/customize');
+            } else {
+                // Existing Google user - go to home
+                router.push('/home');
+            }
         } catch (err) {
-            console.error(err);
+            console.error("Error with Google sign-up:", err);
+            alert("Google sign-up failed. Please try again.");
         }
     };
 
@@ -196,11 +226,8 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         borderWidth: 1,
         width: 350,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
         elevation: 5,
+        boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)',
         marginTop: 40,
         alignItems: 'center',
     },
@@ -255,11 +282,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#f0f0f0',
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
         elevation: 5,
+        boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)',
     },
     socialIcon: {
         width: 30,

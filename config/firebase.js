@@ -38,3 +38,18 @@ setPersistence(auth, browserLocalPersistence)
 // Set up providers and Firestore
 export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
+
+export default app;
+
+// Function to fetch avatar data for a given userId
+export const getAvatarFromFirebase = async (userId) => {
+  const userRef = doc(db, 'users', userId);
+  const userSnap = await getDoc(userRef);
+
+  if (userSnap.exists()) {
+    return userSnap.data().avatar;
+  } else {
+    console.log("No avatar data found");
+    return null;
+  }
+};
