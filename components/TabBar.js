@@ -38,7 +38,6 @@ const TabBar = ({ state, descriptors, navigation }) => {
     const primaryColor = 'black';
     const secondaryColor = 'white';
 
-    // List of allowed tabs
     const allowedTabs = [
         'home/index',
         'calendar/index',
@@ -50,7 +49,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
     return (
         <View style={styles.tabbar}>
             {state.routes
-                .filter(route => allowedTabs.includes(route.name)) // Only show allowed routes
+                .filter(route => allowedTabs.includes(route.name)) 
                 .map((route, index) => {
                     const { options } = descriptors[route.key];
                     const label =
