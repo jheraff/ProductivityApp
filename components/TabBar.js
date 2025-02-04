@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
-
+//fixed navbar
 const TabBar = ({ state, descriptors, navigation }) => {
     const icons = {
         'home/index': (props) => (
