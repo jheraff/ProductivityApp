@@ -1,10 +1,37 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Dimensions } from 'react-native';
+import { doc, updateDoc, increment, onSnapshot } from 'firebase/firestore';
+import { db, auth } from '../../../../config/firebase';
 
 const windowHeight = Dimensions.get('window').height;
 
 export default function Adventure({ navigation }) {
+  const [currency, setCurrency] = useState(0);
+
+  useEffect(() => {
+    const userDocRef = doc(db, 'users', auth.currentUser.uid);
+    
+    const unsubscribe = onSnapshot(userDocRef, (doc) => {
+      if (doc.exists()) {
+        setCurrency(doc.data().currency || 0);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const addCurrency = async (amount) => {
+    try {
+      const userDocRef = doc(db, 'users', auth.currentUser.uid);
+      await updateDoc(userDocRef, {
+        currency: increment(amount)
+      });
+    } catch (error) {
+      console.error('Error', error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       {/* Image Section */}
